@@ -25,7 +25,7 @@
   position: relative;
   width: 80%; /* Adjust as needed for responsiveness */
   max-width: 800px; /* Set a maximum width for larger screens */
-  height: 500px; /* Fixed height */
+  height: 600px; /* Fixed height */
   background-size: cover;
   border: 1px solid #ccc;
   overflow: hidden; /* Prevent overflow */
