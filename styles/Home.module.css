@@ -1,33 +1,50 @@
 .container {
-  text-align: center;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .controls {
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.fileInput,
-.textInput,
-.rangeInput,
-.numberInput,
-.colorInput {
+.fileInput {
+  margin: 10px;
+}
+
+.rangeInput, .numberInput, .colorInput, .textInput {
   margin: 10px;
 }
 
 .canvas {
-  width: 800px; /* Specify the width of the canvas */
-  height: 600px; /* Specify the height of the canvas */
+  position: relative;
+  width: 80%; /* Adjust as needed for responsiveness */
+  max-width: 800px; /* Set a maximum width for larger screens */
+  height: 500px; /* Fixed height */
+  background-size: cover;
   border: 1px solid #ccc;
-  position: relative; /* Allow absolutely positioned children */
-  margin: 0 auto; /* Center canvas */
   overflow: hidden; /* Prevent overflow */
 }
 
 .overlayImage {
-  pointer-events: none; /* Disable interactions with the overlay image */
+  position: absolute;
 }
 
 .textOverlay {
-  pointer-events: none; /* Disable interactions with the text overlay */
+  position: absolute;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+}
+
+.title {
+  color: #333;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
 }

@@ -11,6 +11,7 @@ const Home = () => {
   const [text, setText] = useState('');
   const [fontSize, setFontSize] = useState(20);
   const [fontColor, setFontColor] = useState('#000');
+  const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
 
   // Handler to set the background image
   const handleBackgroundChange = (e) => {
@@ -30,7 +31,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Image Overlay Tool</h1>
+      <h1 className={styles.title}>Image Overlay Tool</h1>
       <div className={styles.controls}>
         <input
           type="file"
@@ -70,10 +71,10 @@ const Home = () => {
           Font Size:
           <input
             type="number"
-            min="10"
+            min="20"
             max="100"
             value={fontSize}
-            onChange={(e) => setFontSize(e.target.value)}
+            onChange={(e) => setFontSize(parseInt(e.target.value, 10))}
             className={styles.numberInput}
           />
         </label>
@@ -102,6 +103,7 @@ const Home = () => {
               width: 500,
               height: 500,
             }}
+            enableResizing={true} // Enable resizing for overlay image
           >
             <Image
               src={overlayImage}
@@ -112,20 +114,26 @@ const Home = () => {
             />
           </Rnd>
         )}
+
         {text && (
-          <div
-            className={styles.textOverlay}
-            style={{
-              fontSize: `${fontSize}px`,
-              color: fontColor,
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
+          <Rnd
+            bounds="parent"
+            defaultPosition={textPosition}
+            onDragStop={(e, d) => setTextPosition({ x: d.x, y: d.y })}
+            enableResizing={false}
           >
-            {text}
-          </div>
+            <div
+              className={styles.textOverlay}
+              style={{
+                fontSize: `${fontSize}px`,
+                color: fontColor,
+                cursor: 'move',
+                userSelect: 'none',
+              }}
+            >
+              {text}
+            </div>
+          </Rnd>
         )}
       </div>
     </div>
